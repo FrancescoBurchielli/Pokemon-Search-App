@@ -1,22 +1,18 @@
 import {FC} from 'react'
-import styled from 'styled-components'
-import { Pokemon } from '../../interfaces'
+import { ContentContainer } from './ContentStyled'
+import { ContentProps } from './ContentInterfaces'
 
-const ContentContainer = styled.div`
-    width: 90%;
-    display: flex;
-    flex-direction: column;    
-    justify-content: center;   
-    @media only screen and (min-width:667px) {
-        width: 70%;
-    }
-`
 
-const Content:FC<{pokemon:Pokemon}> = ({pokemon}) => {
+
+const Content:FC<ContentProps> = ({pokemon}) => {
   return (
-    <ContentContainer>
-        <h2>{pokemon.name}</h2>
-        <p>{pokemon.description}</p>
+    <ContentContainer>     
+                    {pokemon.is_legendary? 
+                        <h2 id="legendaryStyle">{pokemon.name.toUpperCase()} - legendary!</h2>
+                    :
+                        <h2>{pokemon.name}</h2>
+                    }                    
+                    <p>{pokemon.description}</p>         
     </ContentContainer>
   )
 }
