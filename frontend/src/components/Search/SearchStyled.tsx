@@ -6,11 +6,6 @@ flex-direction: column;
 width: 100%;
 justify-content: center;
 align-items: center;
-#logo{
-  height: auto;
-  width: 300px;
-  margin-bottom: 20px;
-}
 #mainSearch{
   display: flex;     
   width: 100%;

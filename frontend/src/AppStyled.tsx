@@ -19,6 +19,11 @@ export const AppContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    #logo{
+        height: auto;
+        width: 300px;
+        margin-bottom: 20px;
+    }
     @media only screen and (min-width:667px) {
       width: 90%;
   }
