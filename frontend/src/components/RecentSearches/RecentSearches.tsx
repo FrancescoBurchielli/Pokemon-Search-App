@@ -1,5 +1,6 @@
 import {FC} from 'react'
 import styled from 'styled-components'
+import {RecentSearchesProps} from './RecentSearchesInterfaces'
 
 const RecentSearchesContainer = styled.div`
     display: flex;
@@ -17,6 +18,11 @@ const RecentSearchesContainer = styled.div`
         p{
             font-size: 12px;
             margin: 0px;
+            cursor: pointer;
+            color: #0000ffc7;
+        }
+        p:hover{
+            color: #0077ffc6;
         }
         
         @media only screen and (min-width:667px) {
@@ -27,15 +33,14 @@ const RecentSearchesContainer = styled.div`
     }
 `
 
-const RecentSearches:FC<{}> = ({}) => {
+const RecentSearches:FC<RecentSearchesProps> = ({searchHistory}) => {
   return (
     <RecentSearchesContainer>
         <div id="mainRecentSearches">
-            <p>Search1</p>
-            <p>Search2</p>
-            <p>Search3</p>
-            <p>Search4</p>
-            <p>Search5</p>
+            {searchHistory.history.sort((a,b)=>b.timeOfSearch-a.timeOfSearch).slice(0,5).map(searchedPokemon=>{
+                return <p key={searchedPokemon.timeOfSearch}>{searchedPokemon.name}</p>
+            })}
+            
         </div>
     </RecentSearchesContainer>
   )

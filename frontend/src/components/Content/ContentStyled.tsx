@@ -5,8 +5,11 @@ export const ContentContainer = styled.div`
     margin-top: 30px;
     display: flex;
     flex-direction: column;    
-    justify-content: center;   
-    #legendaryStyle{
+    justify-content: center;  
+    h2,h4 {
+        margin:0px;
+    } 
+    #legendaryStyle{       
         background: #CF7C1D;
         background: linear-gradient(to right, #CF7C1D 6%, #C8CF0A 100%);
         -webkit-background-clip: text;

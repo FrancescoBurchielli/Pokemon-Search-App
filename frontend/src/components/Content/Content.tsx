@@ -7,12 +7,15 @@ import { ContentProps } from './ContentInterfaces'
 const Content:FC<ContentProps> = ({pokemon}) => {
   return (
     <ContentContainer>     
-                    {pokemon.is_legendary? 
-                        <h2 id="legendaryStyle">{pokemon.name.toUpperCase()} - legendary!</h2>
+                    {pokemon.is_legendary?
+                        <>  
+                            <h2 id="legendaryStyle">{pokemon.name.toUpperCase()}</h2>
+                            <h4 id="legendaryStyle">legendary</h4>
+                        </> 
                     :
-                        <h2>{pokemon.name}</h2>
+                        <h2>{pokemon.name.toUpperCase()}</h2>
                     }                    
-                    <p>{pokemon.description}</p>         
+                    <p>{pokemon.description.replace("\f"," ").replace("POKéMON","Pokémon")}</p>         
     </ContentContainer>
   )
 }
