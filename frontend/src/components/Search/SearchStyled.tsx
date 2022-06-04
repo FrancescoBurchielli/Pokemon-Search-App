@@ -11,7 +11,8 @@ align-items: center;
   width: 100%;
   justify-content: center;    
   #searchInput{
-    width:300px;
+    width: 80%;
+    min-width:100px;
     box-sizing: border-box;      
     padding: 10px 7px 10px 7px;
     border: none;
@@ -41,10 +42,11 @@ align-items: center;
   }
 
   @media only screen and (min-width:667px) {
-      #searchIcon {display:none}
-      #searchButtonIconWrapper{
-        #searchButton {display:inline-block}
-        #searchInput {width: 50%}
+        width:50%;
+        #searchInput {flex-grow:1}
+        #searchIcon {display:none}
+        #searchButtonIconWrapper{
+            #searchButton {display:inline-block}       
       }
   } 
 }

@@ -6,14 +6,14 @@ import { RecentSearchesContainer } from './RecentSearchesStyled'
 const RecentSearches:FC<RecentSearchesProps> = ({searchHistory,setUserInput,searchPokemon}) => {
 
     const recentSearchClickHandler = (e:React.MouseEvent<HTMLParagraphElement, MouseEvent>,name:string) => {
-        searchPokemon(name,false);
+        searchPokemon(name);
         setUserInput(name);        
     }
 
     return (
         <RecentSearchesContainer>
             <div id="mainRecentSearches">
-                {searchHistory.history.sort((a,b)=>b.timeOfSearch-a.timeOfSearch).slice(0,5).map(searchedPokemon=>{
+                {searchHistory.history.slice(0,5).map(searchedPokemon=>{
                     return <p key={searchedPokemon.timeOfSearch} onClick={(e)=>{recentSearchClickHandler(e,searchedPokemon.name)}}>{searchedPokemon.name}</p>
                 })}
             

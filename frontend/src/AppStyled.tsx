@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const AppContainer = styled.div`
   display: flex;  
   flex-direction: column;  
-  justify-content: space-evenly;
+  justify-content: center;
   box-sizing: border-box; 
   padding: 30px;
   height: 100%;
@@ -14,18 +14,24 @@ export const AppContainer = styled.div`
   
 
   #mainApp{
-    width: 100%;   
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     #logo{
         height: auto;
-        width: 300px;
+        width: 200px;
         margin-bottom: 20px;
     }
     @media only screen and (min-width:667px) {
-      width: 90%;
+      height: 100%;
+      width: 60%;
+      #logo{
+        height: auto;
+        width: 300px;
+        margin-bottom: 20px;
+      }
   }
   }
 `

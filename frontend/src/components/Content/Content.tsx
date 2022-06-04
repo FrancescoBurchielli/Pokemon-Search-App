@@ -11,9 +11,13 @@ const Content:FC<ContentProps> = ({pokemon}) => {
                         <>  
                             <h2 id="legendaryStyle">{pokemon.name.toUpperCase()}</h2>
                             <h4 id="legendaryStyle">legendary</h4>
-                        </> 
-                    :
-                        <h2>{pokemon.name.toUpperCase()}</h2>
+                        </>
+                         
+                    :   
+                        <>
+                            <h2>{pokemon.name.toUpperCase()}</h2>
+                            <h4>non-legendary</h4>
+                        </>
                     }                    
                     <p>{pokemon.description.replace("\f"," ").replace("POKéMON","Pokémon")}</p>         
     </ContentContainer>

@@ -29,21 +29,22 @@ const App:FC<{}> = ({}) => {
   }
 
   const updateSearchHistory = (name:string,timeOfSearch:number) => {    
-      const history = [...searchHistory.history,{name,timeOfSearch}];
+      const history = [...searchHistory.history,{name,timeOfSearch}].sort((a,b)=>b.timeOfSearch-a.timeOfSearch);
       const newSearchHistory = {...searchHistory,history};
       setSearchHistory(newSearchHistory); 
       localStorage.setItem('searchHistory',JSON.stringify(newSearchHistory));
   }  
 
-  const searchPokemon = async (name=userInput,updateHistory=true) => {
+  const searchPokemon = async (name=userInput,lastSearched=searchHistory.history[0]?.name) => {
+    
     await fetchPokemon(
       name,
-      updateHistory,
+      lastSearched,
       setPokemon,
       setErrorNotFound,
       setErrorOther,
       updateSearchHistory,
-      setLoading
+      setLoading,
       )
   }
 

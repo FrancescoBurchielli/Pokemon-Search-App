@@ -2,13 +2,15 @@ import { Pokemon } from "../AppInterfaces";
 import axiosInstance from "./index";
 
 interface FetchPokemonFunction {
-    (name:string,
-    updateHistory:boolean,
-    setPokemon:React.Dispatch<React.SetStateAction<Pokemon | undefined>>,
-    setErrorNotFound:React.Dispatch<React.SetStateAction<boolean>>,
-    setErrorOther:React.Dispatch<React.SetStateAction<boolean>>,
-    updateSearchHistory:(name: string, timeOfSearch: number) => void,
-    setLoading:React.Dispatch<React.SetStateAction<boolean>>)
+    (
+        name:string,
+        lastSearched:string,
+        setPokemon:React.Dispatch<React.SetStateAction<Pokemon | undefined>>,
+        setErrorNotFound:React.Dispatch<React.SetStateAction<boolean>>,
+        setErrorOther:React.Dispatch<React.SetStateAction<boolean>>,
+        updateSearchHistory:(name: string, timeOfSearch: number) => void,
+        setLoading:React.Dispatch<React.SetStateAction<boolean>>
+    )
     :
     Promise<void>
 }
@@ -16,13 +18,14 @@ interface FetchPokemonFunction {
 
 export const fetchPokemon:FetchPokemonFunction = async (
     name,
-    updateHistory,
+    lastSearched,
     setPokemon,
     setErrorNotFound,
     setErrorOther,
     updateSearchHistory,
     setLoading
     ) => {    
+    console.log("lastSearched from fetches:",lastSearched);
     const url = `/backend/pokemon/${name.toLowerCase()}/`;  
     setPokemon(undefined);
     setErrorNotFound(false);
@@ -32,7 +35,7 @@ export const fetchPokemon:FetchPokemonFunction = async (
     .then(response => {        
       setPokemon(response.data);
       let timeOfSearch = new Date().getTime();   
-      if(updateHistory){updateSearchHistory(name.toLowerCase(),timeOfSearch)};           
+      if(name.toLowerCase()!==lastSearched){updateSearchHistory(name.toLowerCase(),timeOfSearch)};           
     })
     .catch(error => {
       if(error.response){

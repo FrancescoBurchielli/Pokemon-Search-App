@@ -10,7 +10,8 @@ align-items: center;
     
     flex-wrap: wrap;
     display: flex;
-    width: 100%;
+    flex-direction: row-reverse;
+    width: 90%;
     justify-content: space-between;
     align-items: center;
     p{
@@ -24,7 +25,7 @@ align-items: center;
     }
     
     @media only screen and (min-width:667px) {
-        height: 50%;
+        height: 100%;
         flex-direction: column;            
         justify-content: space-evenly;      
     }       
