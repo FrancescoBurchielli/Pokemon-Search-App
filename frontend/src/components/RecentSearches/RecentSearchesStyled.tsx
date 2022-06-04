@@ -11,12 +11,13 @@ align-items: center;
     flex-wrap: wrap;
     display: flex;
     flex-direction: row-reverse;
-    width: 90%;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
     align-items: center;
+    
     p{
         font-size: 12px;
-        margin: 0px;
+        margin: 0px 5px 0px 5px;
         cursor: pointer;
         color: #0000ffc7;
     }
@@ -27,7 +28,11 @@ align-items: center;
     @media only screen and (min-width:667px) {
         height: 100%;
         flex-direction: column;            
-        justify-content: space-evenly;      
+        justify-content: center;
+        p{
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }      
     }       
 }
 `
