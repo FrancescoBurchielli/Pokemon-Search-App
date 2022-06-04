@@ -14,22 +14,36 @@ export const AppContainer = styled.div`
   
 
   #mainApp{
-    height: 70%;
+    flex-grow:1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     #logo{
         height: auto;
-        width: 200px;
+        width: 150px;
         margin-bottom: 20px;
     }
+    #pokemonNotFound{
+      display: flex;
+      flex-direction: column;      
+      align-items: center;
+      p{
+        margin:0px;
+      }
+      #notFound{
+        width: 200px;
+        height: auto;
+      }
+    }
+   
     @media only screen and (min-width:667px) {
+      flex-grow:0;
       height: 100%;
-      width: 60%;
+      width: 70%;
       #logo{
         height: auto;
-        width: 300px;
+        width: 200px;
         margin-bottom: 20px;
       }
   }

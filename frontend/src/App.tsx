@@ -4,8 +4,10 @@ import Content from './components/Content/Content';
 import RecentSearches from './components/RecentSearches/RecentSearches';
 import Search from './components/Search/Search';
 import { Pokemon, SearchHistory } from './AppInterfaces';
-import Logo from "./assets/logo.png"
 import {fetchPokemon} from './axios/fetches';
+import NotFound from "./assets/not_found.jpg"
+import Logo from "./assets/logo.png"
+
 
 
 const App:FC<{}> = ({}) => {
@@ -48,6 +50,8 @@ const App:FC<{}> = ({}) => {
       )
   }
 
+  console.log(pokemon);
+
   return (
     <AppContainer>   
       <RecentSearches searchHistory={searchHistory} searchPokemon={searchPokemon} setUserInput={setUserInput}/>    
@@ -55,7 +59,12 @@ const App:FC<{}> = ({}) => {
         <img id="logo" src={Logo}/> 
         <Search userInput={userInput} setUserInput={setUserInput} searchPokemon={searchPokemon} />  
         {loading && <p>Searching...</p>}    
-        {errorNotFound && <p>We couldn't find your Pokemon, sorry :(</p>}  
+        {errorNotFound && (
+          <div id="pokemonNotFound">
+          <p>We couldn't find your Pokemon, sorry...</p>
+          <img id="notFound" src={NotFound}></img>
+        </div>
+        )}  
         {errorOther && <p>Something went wrong. Please try again later...</p>}  
         {pokemon && <Content pokemon={pokemon}/>}
       </div>   
