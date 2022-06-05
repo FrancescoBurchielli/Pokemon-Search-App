@@ -6,19 +6,25 @@ interface Props {
 
 
 export const ContentContainer = styled.div<Props>`
-    visibility: ${props => (props.spriteLoaded? 'visible' : 'hidden')}
+    visibility: ${props => (props.spriteLoaded? 'visible' : 'hidden')};   
     width: 90%;
-    margin-top: 30px;
+    margin-top: 20%;
     display: flex;
     flex-direction: column;    
     justify-content: center;  
     align-items:center;
-    h1,h5 {
-        margin:0px;
+    h1 {
+        margin: 0px;
+        margin-top:10px;
     }    
+    h3{
+        margin: 0px;
+        margin-bottom:30px;
+    }
     p{
         text-align:center;
         margin: 0px;
+        margin-top: 30px;
     }
     #legendaryStyle{       
         background: #CF7C1D;
@@ -40,6 +46,7 @@ export const ContentContainer = styled.div<Props>`
    
     @media only screen and (min-width:667px) {
         width: 50%;
+        margin-top: 5%;
         align-items:flex-start;
         p{
             text-align:left;

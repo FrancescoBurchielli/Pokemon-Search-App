@@ -1,32 +1,32 @@
-import axios from "axios";
-import { Pokemon } from "../AppInterfaces";
+import { Pokemon, SearchHistory } from "../AppInterfaces";
 import axiosInstance from "./index";
 
 interface FetchPokemonFunction {
     (
         name:string,
-        lastSearched:string,
         setPokemon: React.Dispatch<React.SetStateAction<Pokemon | undefined>>,
         setErrorNotFound: React.Dispatch<React.SetStateAction<boolean>>,
         setErrorOther: React.Dispatch<React.SetStateAction<boolean>>,
-        updateSearchHistory:(name: string, timeOfSearch: number) => void,
+        searchHistory:SearchHistory,
+        setSearchHistory:React.Dispatch<React.SetStateAction<SearchHistory>>,
+        updateSearchHistory:(name:string,timeOfSearch:number,searchHistory:SearchHistory,setSearchHistory:React.Dispatch<React.SetStateAction<SearchHistory>>) => void,
         setLoading: React.Dispatch<React.SetStateAction<boolean>>
     )
     :
     Promise<void>
 }
 
-
 export const fetchPokemon:FetchPokemonFunction = async (
     name,
-    lastSearched,
     setPokemon,
     setErrorNotFound,
     setErrorOther,
+    searchHistory,
+    setSearchHistory,
     updateSearchHistory,
     setLoading
-    ) => {    
-    console.log("lastSearched from fetches:",lastSearched);
+    ) => {   
+    
     const url = `/backend/pokemon/${name.toLowerCase()}/`;  
     setPokemon(undefined);
     setErrorNotFound(false);
@@ -36,7 +36,8 @@ export const fetchPokemon:FetchPokemonFunction = async (
     .then(response => {        
       setPokemon(response.data);     
       let timeOfSearch = new Date().getTime();   
-      if(name.toLowerCase()!==lastSearched){updateSearchHistory(name.toLowerCase(),timeOfSearch)};           
+      if(!searchHistory.history.slice(0,5).map(searchObj=>searchObj.name).includes(name.toLowerCase())){
+        updateSearchHistory(name.toLowerCase(),timeOfSearch,searchHistory,setSearchHistory)};           
     })
     .catch(error => {
       if(error.response){

@@ -7,6 +7,7 @@ import { Pokemon, SearchHistory } from './AppInterfaces';
 import {fetchPokemon} from './axios/fetches';
 import NotFound from "./assets/not_found.jpg"
 import Logo from "./assets/logo.png"
+import { nameFormatter, retrieveSearchHistory, updateSearchHistory } from './helpers/helpers';
 
 
 const App:FC<{}> = ({}) => {
@@ -19,31 +20,19 @@ const App:FC<{}> = ({}) => {
   const [errorOther,setErrorOther] = useState<boolean>(false);  
 
   useEffect(() => {
-    retrieveSearchHistory();
-  }, [])
-  
-  const retrieveSearchHistory = () => {
-    const retrievedHistory = localStorage.getItem('searchHistory');    
-    if(retrievedHistory!==null){
-      setSearchHistory(JSON.parse(retrievedHistory));
-    }     
-  }
+    retrieveSearchHistory(setSearchHistory);
+  }, [])  
 
-  const updateSearchHistory = (name:string,timeOfSearch:number) => {    
-      const history = [...searchHistory.history,{name,timeOfSearch}].sort((a,b)=>b.timeOfSearch-a.timeOfSearch);
-      const newSearchHistory = {...searchHistory,history};
-      setSearchHistory(newSearchHistory); 
-      localStorage.setItem('searchHistory',JSON.stringify(newSearchHistory));
-  }  
-
-  const searchPokemon = async (name=userInput,lastSearched=searchHistory.history[0]?.name) => {
-    
+  const searchPokemon = async (name=userInput) => {    
+    const formattedName = nameFormatter(name);
+    if(!formattedName){return};    
     await fetchPokemon(
-      name,
-      lastSearched,
+      formattedName,
       setPokemon,
       setErrorNotFound,
       setErrorOther,
+      searchHistory,
+      setSearchHistory,
       updateSearchHistory,
       setLoading,      
       )
@@ -52,10 +41,14 @@ const App:FC<{}> = ({}) => {
   return (
     <AppContainer>   
       <RecentSearches searchHistory={searchHistory} searchPokemon={searchPokemon} setUserInput={setUserInput}/>    
-      <div id='mainApp'>
-        <img id="logo" src={Logo}/> 
+      <div id='mainApp'>    
+        <img id="logo" src={Logo}></img>    
         <Search userInput={userInput} setUserInput={setUserInput} searchPokemon={searchPokemon} />  
-        {loading && <p>Searching...</p>}    
+        {loading && (         
+          <div id="spinnerContainer">
+            <div id="spinner"></div>
+          </div>
+        )}    
         {errorNotFound && (
           <div id="pokemonNotFound">
           <p>We couldn't find your Pokemon, sorry...</p>

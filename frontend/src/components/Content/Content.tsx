@@ -14,13 +14,13 @@ const Content:FC<ContentProps> = ({pokemon}) => {
                     {pokemon.isLegendary?
                         <>  
                             <h1 id="legendaryStyle">{pokemon.name.toUpperCase()}</h1>
-                            <h5 id="legendaryStyle">legendary</h5>
+                            <h3 id="legendaryStyle">legendary</h3>
                         </>
                          
                     :   
                         <>
                             <h1>{pokemon.name.toUpperCase()}</h1>
-                            <h5>non-legendary</h5>
+                            <h3>non-legendary</h3>
                         </>
                     }
                      {pokemon.spriteUrl && <img id="sprite" src={pokemon.spriteUrl} onLoad={()=>setSpriteLoaded(true)}></img>}

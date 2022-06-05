@@ -33,7 +33,8 @@ class RetrievePokemon(View):
             pokemon_species_response = requests.get(url_species)
             try:
                 pokemon_info_response = requests.get(url_pokemon)
-            except requests.exceptions.RequestException:
+                pokemon_species_response.raise_for_status()
+            except requests.exceptions.HTTPError or requests.exceptions.RequestException:
                 return HttpResponse(status=pokemon_info_response.status_code, content=pokemon_info_response.content)
             custom_response = serve_custom_response(pokemon_info_response,pokemon_species_response)
             return JsonResponse(custom_response)
