@@ -4,11 +4,12 @@ import requests
 
 def serve_custom_response(pokemon_info_response_raw,pokemon_species_response_raw):
 
-    pokemon_info_response_json = pokemon_info_response_raw.json()
-    pokemon_sprites = pokemon_info_response_json.get("sprites","no sprites available");
-    if hasattr(pokemon_sprites,"get"):
-        pokemon_sprite_url = pokemon_sprites.get("front_default","")
-
+    pokemon_sprite_url = ""
+    if pokemon_info_response_raw is not None:
+        pokemon_info_response_json = pokemon_info_response_raw.json()
+        pokemon_sprites = pokemon_info_response_json.get("sprites","no sprites available");
+        if hasattr(pokemon_sprites,"get"):
+            pokemon_sprite_url = pokemon_sprites.get("front_default","")
     pokemon_species_response_json = pokemon_species_response_raw.json()
     name = pokemon_species_response_json.get("name", "not provided")
     is_legendary = pokemon_species_response_json.get("is_legendary", False)
@@ -31,12 +32,13 @@ class RetrievePokemon(View):
         url_species = base_url + 'pokemon-species/' + pokemon_name
         try:
             pokemon_species_response = requests.get(url_species)
+            pokemon_species_response.raise_for_status()
             try:
                 pokemon_info_response = requests.get(url_pokemon)
-                pokemon_species_response.raise_for_status()
+                pokemon_info_response.raise_for_status()
             except requests.exceptions.HTTPError or requests.exceptions.RequestException:
-                return HttpResponse(status=pokemon_info_response.status_code, content=pokemon_info_response.content)
+                pokemon_info_response = None
             custom_response = serve_custom_response(pokemon_info_response,pokemon_species_response)
             return JsonResponse(custom_response)
-        except requests.exceptions.RequestException:
+        except requests.exceptions.HTTPError or requests.exceptions.RequestException:
             return HttpResponse(status=pokemon_species_response.status_code, content=pokemon_species_response.content)
