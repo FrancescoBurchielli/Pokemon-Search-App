@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import {FC,useState} from 'react'
 import { ContentContainer } from './ContentStyled'
 import { ContentProps } from './ContentInterfaces'
 import PokeBall from "../../assets/poke_ball.png"
@@ -6,9 +6,12 @@ import PokeBall from "../../assets/poke_ball.png"
 
 
 const Content:FC<ContentProps> = ({pokemon}) => {
-  return (
-    <ContentContainer>     
-                    {pokemon.is_legendary?
+       
+    const [spriteLoaded,setSpriteLoaded] = useState<boolean>(false);
+
+    return (
+        <ContentContainer spriteLoaded>     
+                    {pokemon.isLegendary?
                         <>  
                             <h1 id="legendaryStyle">{pokemon.name.toUpperCase()}</h1>
                             <h5 id="legendaryStyle">legendary</h5>
@@ -19,11 +22,11 @@ const Content:FC<ContentProps> = ({pokemon}) => {
                             <h1>{pokemon.name.toUpperCase()}</h1>
                             <h5>non-legendary</h5>
                         </>
-                    } 
-                    {pokemon.sprite_url && <img id="sprite" src={pokemon.sprite_url}></img>}
-                    {!pokemon.sprite_url &&  <img id="pokeBall" src={PokeBall}></img>}                   
+                    }
+                     {pokemon.spriteUrl && <img id="sprite" src={pokemon.spriteUrl} onLoad={()=>setSpriteLoaded(true)}></img>}
+                    {!pokemon.spriteUrl &&  <img id="pokeBall" src={PokeBall} onLoad={()=>setSpriteLoaded(true)}></img>}                                        
                     <p>{pokemon.description.replace("\f"," ").replace("POKéMON","Pokémon")}</p>         
-    </ContentContainer>
+        </ContentContainer>
   )
 }
 

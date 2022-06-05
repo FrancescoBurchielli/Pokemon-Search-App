@@ -20,6 +20,7 @@ align-items: center;
         margin: 0px 5px 0px 5px;
         cursor: pointer;
         color: #0000ffc7;
+        text-decoration: underline;
     }
     p:hover{
         color: #0077ffc6;

@@ -18,10 +18,8 @@ def serve_custom_response(pokemon_info_response_raw,pokemon_species_response_raw
         description = flavor_text_first_english_entry.get("flavor_text","no description provided")
     else:
         description = "no description provided"
-    custom_response_json = {'name': name, 'description': description, 'is_legendary': is_legendary,'sprite_url':pokemon_sprite_url}
+    custom_response_json = {'name': name, 'description': description, 'isLegendary': is_legendary,'spriteUrl':pokemon_sprite_url}
     return custom_response_json
-
-
 
 
 class RetrievePokemon(View):

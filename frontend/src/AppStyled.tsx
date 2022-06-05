@@ -14,10 +14,10 @@ export const AppContainer = styled.div`
   
 
   #mainApp{
-    flex-grow:1;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     #logo{
         height: auto;
@@ -25,6 +25,7 @@ export const AppContainer = styled.div`
         margin-bottom: 20px;
     }
     #pokemonNotFound{
+      margin: 50px;
       display: flex;
       flex-direction: column;      
       align-items: center;

@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const ContentContainer = styled.div`
+interface Props {
+    spriteLoaded:boolean,
+}
+
+
+export const ContentContainer = styled.div<Props>`
+    visibility: ${props => (props.spriteLoaded? 'visible' : 'hidden')}
     width: 90%;
     margin-top: 30px;
     display: flex;
@@ -20,10 +26,10 @@ export const ContentContainer = styled.div`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
     #sprite{
-        width: 100px;
+        width: 150px;
         height: auto;
-        margin: 20px;
     }
     #pokeBall{
         width: 50px;
@@ -31,13 +37,10 @@ export const ContentContainer = styled.div`
         opacity: 0.2;
         margin: 20px 0px;
     }
+   
     @media only screen and (min-width:667px) {
         width: 50%;
         align-items:flex-start;
-        #sprite{
-            width: 150px;
-            height: auto;
-        }
         p{
             text-align:left;
         }

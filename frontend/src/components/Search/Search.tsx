@@ -1,5 +1,6 @@
 import {FC} from 'react'
 import SearchIcon from "../../assets/searchIcon.png"
+import SearchIconWhite from "../../assets/searchIconWhite.png"
 import { SearchProps } from './SearchInterfaces'
 import { SearchContainer } from './SearchStyled'
 
@@ -17,10 +18,10 @@ const Search:FC<SearchProps> = ({userInput,setUserInput,searchPokemon}) => {
     <SearchContainer>               
       <div id="mainSearch">
         <input id="searchInput" onKeyUp={(e)=>keyUpHandler(e)} onClick={()=>{setUserInput('')}}placeholder="type a pokemon here.." value={userInput} onChange={(e)=>{setUserInput(e.target.value)}}></input>
-        <div id="searchButtonIconWrapper" onClick={()=>{searchPokemon()}}>
-          <button id="searchButton" >search</button>
-          <img src={SearchIcon} id="searchIcon"></img>
-        </div>        
+        <button id="searchButton" onClick={()=>{searchPokemon()}}>
+            <span id="searchButtonText">search</span>
+            <img src={SearchIconWhite} id="searchButtonIcon"></img>
+        </button>            
       </div>
       
     </SearchContainer>

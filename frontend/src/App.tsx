@@ -9,7 +9,6 @@ import NotFound from "./assets/not_found.jpg"
 import Logo from "./assets/logo.png"
 
 
-
 const App:FC<{}> = ({}) => {
  
   const [searchHistory,setSearchHistory] = useState<SearchHistory>({history:[]});
@@ -46,11 +45,9 @@ const App:FC<{}> = ({}) => {
       setErrorNotFound,
       setErrorOther,
       updateSearchHistory,
-      setLoading,
+      setLoading,      
       )
   }
-
-  console.log(pokemon);
 
   return (
     <AppContainer>   
@@ -65,8 +62,9 @@ const App:FC<{}> = ({}) => {
           <img id="notFound" src={NotFound}></img>
         </div>
         )}  
-        {errorOther && <p>Something went wrong. Please try again later...</p>}  
+        {errorOther && <p>Something went wrong. Please try again later...</p>}        
         {pokemon && <Content pokemon={pokemon}/>}
+       
       </div>   
     </AppContainer>
   );

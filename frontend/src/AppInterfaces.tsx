@@ -1,8 +1,8 @@
 export interface Pokemon {
     name:string,
     description:string,
-    is_legendary:boolean;
-    sprite_url:string,
+    isLegendary:boolean;
+    spriteUrl:string,
   }
 
 export interface SearchHistory {
