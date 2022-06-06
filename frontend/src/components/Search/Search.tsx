@@ -4,20 +4,18 @@ import { SearchProps } from './SearchInterfaces'
 import { SearchContainer } from './SearchStyled'
 
 
-const Search:FC<SearchProps> = ({userInput,setUserInput,searchPokemon}) => {  
+const Search:FC<SearchProps> = ({userInput,setUserInput,onSubmitSearchPokemon}) => {  
  
-  const keyUpHandler = (e:React.KeyboardEvent<HTMLInputElement>) => {
-    const key = e.key || e.keyCode;
-    if (key==='Enter' || key===13) {
-      searchPokemon();
-    }
+  const _onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmitSearchPokemon();
   }
 
   return (
-    <SearchContainer>               
+    <SearchContainer onSubmit={_onSubmit}>               
       <div id="mainSearch">
-        <input id="searchInput" onKeyUp={(e)=>keyUpHandler(e)} onClick={()=>{setUserInput('')}}placeholder="type a pokemon name here.." value={userInput} onChange={(e)=>{setUserInput(e.target.value)}}></input>
-        <button id="searchButton" onClick={()=>{searchPokemon()}}>
+        <input id="searchInput" onClick={()=>{setUserInput('')}}placeholder="type a pokemon name here.." value={userInput} onChange={(e)=>{setUserInput(e.target.value)}}></input>
+        <button id="searchButton" type='submit'>
             <span id="searchButtonText">search</span>
             <img src={SearchIconWhite} id="searchButtonIcon"></img>
         </button>            

@@ -1,7 +1,7 @@
-import { SearchHistory } from "../../AppInterfaces";
+import { Pokemon, SearchHistory } from "../../AppInterfaces";
 
 export interface RecentSearchesProps {
     searchHistory:SearchHistory,
-    searchPokemon:(name?: string, lastSearched?:string) => Promise<void>,
+    setPokemon: React.Dispatch<React.SetStateAction<Pokemon | undefined>>,
     setUserInput:React.Dispatch<React.SetStateAction<string>>,   
 }

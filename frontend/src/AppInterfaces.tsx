@@ -12,5 +12,5 @@ export interface FetchErrorInterface{
 
 
 export interface SearchHistory {
-  history: { name: string; timeOfSearch: number }[];
+  history: { pokemon: Pokemon; timeOfSearch: number }[];
 }

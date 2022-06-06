@@ -1,20 +1,21 @@
 import {FC} from 'react'
+import { Pokemon } from '../../AppInterfaces'
 import {RecentSearchesProps} from './RecentSearchesInterfaces'
 import { RecentSearchesContainer } from './RecentSearchesStyled'
 
 
-const RecentSearches:FC<RecentSearchesProps> = ({searchHistory,setUserInput,searchPokemon}) => {
+const RecentSearches:FC<RecentSearchesProps> = ({searchHistory,setUserInput,setPokemon}) => {
 
-    const recentSearchClickHandler = (e:React.MouseEvent<HTMLParagraphElement, MouseEvent>,name:string) => {
-        searchPokemon(name);
-        setUserInput(name);        
+    const recentSearchClickHandler = (e:React.MouseEvent<HTMLParagraphElement, MouseEvent>,pokemon:Pokemon) => {        
+        setPokemon(pokemon);
+        setUserInput(pokemon.name);        
     }
 
     return (
         <RecentSearchesContainer>
             <div id="mainRecentSearches">
-                {searchHistory.history.slice(0,5).map(searchedPokemon=>{
-                    return <p key={searchedPokemon.timeOfSearch} onClick={(e)=>{recentSearchClickHandler(e,searchedPokemon.name)}}>{searchedPokemon.name}</p>
+                {searchHistory.history.sort((a,b)=>b.timeOfSearch-a.timeOfSearch).map(searchedItem=>{
+                    return <p key={searchedItem.timeOfSearch} onClick={(e)=>{recentSearchClickHandler(e,searchedItem.pokemon)}}>{searchedItem.pokemon.name}</p>
                 })}
             
             </div>
