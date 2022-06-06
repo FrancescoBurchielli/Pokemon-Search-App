@@ -11,6 +11,11 @@ export interface FetchErrorInterface{
 }
 
 
+export interface SearchItem {
+  pokemon: Pokemon,
+  timeOfSearch: number,
+}
+
 export interface SearchHistory {
-  history: { pokemon: Pokemon; timeOfSearch: number }[];
+  history: SearchItem[];
 }

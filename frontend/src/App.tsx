@@ -61,6 +61,7 @@ const App = () => {
           searchHistory={searchHistory}
           setPokemon={setPokemon}
           setUserInput={setUserInput}
+          setFetchError={setFetchError}
         />
       )}
       <div id="mainApp">

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const FetchErrorContainer = styled.div`
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   #pokemonNotFound {
     margin: 50px;
     display: flex;

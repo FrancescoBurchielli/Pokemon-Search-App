@@ -7,12 +7,18 @@ interface Props {
 
 export const PokemonCardContainer = styled.div<Props>`
     visibility: ${props => (props.spriteLoaded? 'visible' : 'hidden')};   
-    width: 90%;
-    margin-top: 20%;
+    height: 400px;
+    width: 80%;
+    margin-top: 2%;
     display: flex;
     flex-direction: column;    
     justify-content: center;  
     align-items:center;
+    
+    border-radius: 5px;
+    box-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+        
     h1 {
         margin: 0px;
         margin-top:10px;
@@ -24,7 +30,7 @@ export const PokemonCardContainer = styled.div<Props>`
     p{
         text-align:center;
         margin: 0px;
-        margin-top: 30px;
+        margin: 30px;
     }
     #legendaryStyle{       
         background: #CF7C1D;
@@ -35,7 +41,7 @@ export const PokemonCardContainer = styled.div<Props>`
 
     #sprite{
         width: 150px;
-        height: auto;
+        height: auto;       
     }
     #pokeBall{
         width: 50px;
@@ -45,11 +51,9 @@ export const PokemonCardContainer = styled.div<Props>`
     }
    
     @media only screen and (min-width:667px) {
+        
         width: 50%;
         margin-top: 5%;
-        align-items:flex-start;
-        p{
-            text-align:left;
-        }
+        
     }
 `

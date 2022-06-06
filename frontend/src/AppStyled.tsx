@@ -5,7 +5,7 @@ export const AppContainer = styled.div`
   flex-direction: column;  
   justify-content: center;
   box-sizing: border-box; 
-  padding: 30px;
+  /*padding: 30px;*/
   height: 100%;
   width: 100%;  
   @media only screen and (min-width:667px) {
@@ -18,6 +18,7 @@ export const AppContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 3%;
     #logo{
         height: auto;
         width: 150px;
@@ -29,6 +30,7 @@ export const AppContainer = styled.div`
       flex-grow:0;
       height: 100%;
       width: 70%;
+      margin: 0px;
       #logo{
         height: auto;
         width: 200px;

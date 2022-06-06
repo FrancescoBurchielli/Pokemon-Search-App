@@ -1,39 +1,80 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const RecentSearchesContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
 
-#mainRecentSearches{
-    
+  #mainRecentSearches {
     flex-wrap: wrap;
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
     justify-content: center;
     align-items: center;
-    
-    p{
+
+    .searchItem {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      padding: 0px 5px;
+      .pokemonSprite {
+        width: 40px;
+        height: auto;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 100%;
+        opacity: 0.3;
+      }
+      #pokeBall {
+        opacity: 0.1;
+      }
+      #pokemonName {
         font-size: 12px;
         margin: 0px 5px 0px 5px;
         cursor: pointer;
-        color: #0000ffc7;
-        text-decoration: underline;
+        color: #aaaaaa;
+      }
     }
-    p:hover{
-        color: #0077ffc6;
+    .searchItem:hover {
+      #pokemonName {
+        color: black;
+      }
+      .pokemonSprite {
+        opacity: 1;
+      }
+      #pokeBall {
+        opacity: 0.6;
+      }
     }
-    
-    @media only screen and (min-width:667px) {
-        height: 100%;
-        flex-direction: column;            
-        justify-content: center;
-        p{
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }      
-    }       
-}
-`
+    #searchItemClicked {
+      #pokemonName {
+        color: black;
+      }
+      .pokemonSprite {
+        opacity: 1;
+      }
+      #pokeBall {
+        opacity: 0.6;
+      }
+    }
+  }
+  @media only screen and (min-width: 667px) {
+    padding: 0%;
+    #mainRecentSearches {
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      .searchItem {
+        padding: 10px;
+        .pokemonSprite {
+          width: 60px;
+          height: auto;
+        }
+      }
+    }
+  }
+`;

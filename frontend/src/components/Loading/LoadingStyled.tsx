@@ -1,16 +1,6 @@
 import styled from "styled-components";
 
 export const LoadingContainer = styled.div`
-  /* Safari */
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -19,6 +9,12 @@ export const LoadingContainer = styled.div`
       transform: rotate(360deg);
     }
   }
+
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   #spinnerContainer {
     width: 90%;

@@ -17,15 +17,16 @@ align-items: center;
     padding: 10px 7px 10px 7px;
     border: none;
     border-radius: 5px;
-    box-shadow: 3px 4px 10px 5px rgba(186,186,186,0.31);
+    box-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
   #searchButton{   
     width: 50px;
     height: 45px;       
     cursor: pointer;          
     margin-left: 5px;  
+    box-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
-    border:none;
+    border: none;
     background-color: rgba(238,21,21,0.7);
     color: white;
     font-weight: bold;
@@ -40,7 +41,7 @@ align-items: center;
   } 
     
   @media only screen and (min-width:667px) {
-        width:50%;
+        width:60%;
         padding: 10px 7px 10px 7px;
         #searchInput {flex-grow:1} 
         #searchButton{
