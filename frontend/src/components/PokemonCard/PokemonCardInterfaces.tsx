@@ -1,5 +1,5 @@
 import { Pokemon } from "../../AppInterfaces";
 
-export interface ContentProps {
+export interface PokemonCardProps {
     pokemon:Pokemon,
 }

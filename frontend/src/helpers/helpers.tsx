@@ -15,6 +15,7 @@ export const updateSearchHistory = (name:string,timeOfSearch:number,searchHistor
 }  
 
 export const nameFormatter = (name:string) => {
+  /*
     let formattedName;
     const trimmedString = name.trim();
     if(!name || trimmedString.length === 0){return ""}
@@ -27,4 +28,6 @@ export const nameFormatter = (name:string) => {
       }
     } 
     return formattedName;
+    */
+   return encodeURIComponent(name);
   }

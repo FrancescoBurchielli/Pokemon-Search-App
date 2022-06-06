@@ -5,7 +5,7 @@ interface Props {
 }
 
 
-export const ContentContainer = styled.div<Props>`
+export const PokemonCardContainer = styled.div<Props>`
     visibility: ${props => (props.spriteLoaded? 'visible' : 'hidden')};   
     width: 90%;
     margin-top: 20%;
