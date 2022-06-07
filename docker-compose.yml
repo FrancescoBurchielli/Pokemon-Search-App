@@ -1,0 +1,23 @@
+version: "3.2"
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/pokemon-app/backend
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    command: "sh /scripts/dev.sh"
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/pokemon-app/frontend
+      - /pokemon-app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    command: npm start
