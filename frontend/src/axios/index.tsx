@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL:'http://localhost:8000/backend/pokemon/'
-})
+  baseURL: "http://localhost:8000/backend/pokemon/",
+});
 
 export default axiosInstance;

@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { Pokemon, FetchErrorInterface, SearchHistory } from "../AppInterfaces";
+import { Pokemon, FetchErrorInterface } from "../AppInterfaces";
 import axiosInstance from "./index";
 
 interface FetchPokemonFunction {

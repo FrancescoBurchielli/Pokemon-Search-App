@@ -6,6 +6,8 @@ services:
       - ./backend:/pokemon-app/backend
     ports:
       - "8000:8000"
+    env_file:
+      - ./backend/env/dev.env
     stdin_open: true
     tty: true
     command: "sh /scripts/dev.sh"
