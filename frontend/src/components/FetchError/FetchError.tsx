@@ -7,7 +7,7 @@ export const FetchError: FC<{ error: FetchErrorInterface }> = ({ error }) => {
   return (
     <FetchErrorContainer>
       <div id="pokemonNotFound">
-        <img alt="notFound" id="notFound" src={NotFound}></img>
+        <img alt="error" id="notFound" src={NotFound}></img>
         <p>{error.message}</p>
       </div>
     </FetchErrorContainer>

@@ -23,6 +23,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
         <img
           id={pokemon.spriteUrl ? "sprite" : "pokeBall"}
           src={pokemon.spriteUrl ? pokemon.spriteUrl : PokeBall}
+          alt="pokemon sprite"
           onLoad={() => setSpriteLoaded(true)}
         />
       }

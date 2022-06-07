@@ -29,7 +29,7 @@ const Search: FC<SearchProps> = ({
         ></input>
         <button id="searchButton" type="submit">
           <span id="searchButtonText">search</span>
-          <img src={SearchIconWhite} id="searchButtonIcon"></img>
+          <img src={SearchIconWhite} id="searchButtonIcon" alt="search"></img>
         </button>
       </div>
     </SearchContainer>

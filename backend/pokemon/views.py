@@ -1,8 +1,7 @@
 import os
-
+import requests
 from django.http import JsonResponse, HttpResponse
 from django.views import View
-import requests
 
 
 def get_pokemon_flavor_text(flavor_text_entries):

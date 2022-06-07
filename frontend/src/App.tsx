@@ -3,10 +3,15 @@ import { AppContainer } from "./AppStyled";
 import { PokemonCard } from "./components/PokemonCard/PokemonCard";
 import RecentSearches from "./components/RecentSearches/RecentSearches";
 import Search from "./components/Search/Search";
-import { Pokemon, SearchHistory, FetchErrorInterface } from "./AppInterfaces";
-import { fetchPokemonAndSetState } from "./axios/fetches";
+import {
+  Pokemon,
+  SearchHistory,
+  FetchErrorInterface,
+  SearchItem,
+} from "./AppInterfaces";
 import Logo from "./assets/logo.png";
 import {
+  fetchPokemonAndSetState,
   inputFormatter,
   retrieveSearchHistory,
   updateSearchHistoryHelper,
@@ -38,8 +43,20 @@ const App = () => {
     if (!formattedInput) {
       return;
     }
+
     setPokemon(undefined);
     setFetchError(undefined);
+
+    if (searchHistory) {
+      const searchedPokemon = searchHistory.history.filter(
+        (searchItem) => searchItem.pokemon.name === formattedInput
+      )[0];
+      if (searchedPokemon) {
+        setPokemon(searchedPokemon.pokemon);
+        return;
+      }
+    }
+
     fetchPokemonAndSetState(
       formattedInput,
       setLoading,
@@ -53,14 +70,18 @@ const App = () => {
     searchPokemon();
   };
 
+  const onSearchItemClickHandler = (searchItem: SearchItem): void => {
+    setFetchError(undefined);
+    setPokemon(searchItem.pokemon);
+    setUserInput(searchItem.pokemon.name);
+  };
+
   return (
     <AppContainer>
       {searchHistory && (
         <RecentSearches
           searchHistory={searchHistory}
-          setPokemon={setPokemon}
-          setUserInput={setUserInput}
-          setFetchError={setFetchError}
+          onSearchItemClickHandler={onSearchItemClickHandler}
         />
       )}
       <div id="mainApp">

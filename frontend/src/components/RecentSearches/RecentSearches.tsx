@@ -6,9 +6,7 @@ import PokeBall from "../../assets/poke_ball.png";
 
 const RecentSearches: FC<RecentSearchesProps> = ({
   searchHistory,
-  setUserInput,
-  setPokemon,
-  setFetchError,
+  onSearchItemClickHandler,
 }) => {
   const [clickedSearchItem, setClickedSearchItem] = useState<
     SearchItem | undefined
@@ -34,9 +32,7 @@ const RecentSearches: FC<RecentSearchesProps> = ({
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
     searchItem: SearchItem
   ) => {
-    setFetchError(undefined);
-    setPokemon(searchItem.pokemon);
-    setUserInput(searchItem.pokemon.name);
+    onSearchItemClickHandler(searchItem);
     setClickedSearchItem(searchItem);
   };
 
@@ -64,6 +60,7 @@ const RecentSearches: FC<RecentSearchesProps> = ({
                 <img
                   className="pokemonSprite"
                   id={searchItem.pokemon.spriteUrl === "" ? "pokeBall" : ""}
+                  alt="pokemon sprite"
                   src={
                     searchItem.pokemon.spriteUrl !== ""
                       ? searchItem.pokemon.spriteUrl

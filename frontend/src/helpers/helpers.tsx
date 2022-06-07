@@ -1,4 +1,17 @@
-import { Pokemon, SearchHistory } from "../AppInterfaces";
+import { FetchErrorInterface, Pokemon, SearchHistory } from "../AppInterfaces";
+import { fetchPokemon } from "../axios/fetches";
+
+interface FetchPokemonAndSetStateFunction {
+  (
+    name: string,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setPokemon: React.Dispatch<React.SetStateAction<Pokemon | undefined>>,
+    setError: React.Dispatch<
+      React.SetStateAction<FetchErrorInterface | undefined>
+    >,
+    updateSearchHistory: (searchedPokemon: Pokemon) => void
+  ): void;
+}
 
 export const retrieveSearchHistory = (
   setSearchHistory: React.Dispatch<
@@ -41,4 +54,37 @@ export const updateSearchHistoryHelper = (
 export const inputFormatter = (name: string) => {
   const formattedInput = name.trim().toLowerCase().replace(" ", "-");
   return formattedInput;
+};
+
+export const fetchPokemonAndSetState: FetchPokemonAndSetStateFunction = (
+  name,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setPokemon,
+  setError,
+  updateSearchHistory
+) => {
+  setLoading(true);
+  fetchPokemon(name)
+    .then((response) => {
+      updateSearchHistory(response.data);
+      setPokemon(response.data);
+    })
+    .catch((error) => {
+      let errorObject: FetchErrorInterface;
+      if (error.response && error.response.status === 404) {
+        errorObject = {
+          status: error.response.status,
+          message: "we couldn't find your pokemon, sorry...",
+        };
+      } else {
+        errorObject = {
+          status: 500,
+          message: "something went wrong, please try again later...",
+        };
+      }
+      setError(errorObject);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
 };
