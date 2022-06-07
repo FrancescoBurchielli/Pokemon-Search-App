@@ -5,15 +5,14 @@ export interface Pokemon {
   spriteUrl: string;
 }
 
-export interface FetchErrorInterface{
-  status: number,
-  message: string,
+export interface FetchErrorInterface {
+  status: number;
+  message: string;
 }
 
-
 export interface SearchItem {
-  pokemon: Pokemon,
-  timeOfSearch: number,
+  pokemon: Pokemon;
+  timeOfSearch: number;
 }
 
 export interface SearchHistory {

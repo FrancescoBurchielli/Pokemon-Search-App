@@ -32,5 +32,3 @@ export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
     </PokemonCardContainer>
   );
 };
-
-

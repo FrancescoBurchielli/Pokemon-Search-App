@@ -38,7 +38,7 @@ export const updateSearchHistoryHelper = (
   setSearchHistory(newSearchHistoryObject);
 };
 
-export const inputFormatter = (name: string) => {  
- const formattedInput = name.trim().toLowerCase().replace(" ","-");
- return formattedInput;
+export const inputFormatter = (name: string) => {
+  const formattedInput = name.trim().toLowerCase().replace(" ", "-");
+  return formattedInput;
 };

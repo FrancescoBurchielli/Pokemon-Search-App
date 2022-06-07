@@ -6,6 +6,7 @@ export const FetchErrorContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5%;
   #pokemonNotFound {
     margin: 50px;
     display: flex;

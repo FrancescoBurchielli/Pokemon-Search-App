@@ -15,6 +15,11 @@ export const RecentSearchesContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    #recentlySearchedHeader {
+      font-style: italic;
+      display: none;
+    }
+
     .searchItem {
       display: flex;
       flex-direction: column;
@@ -34,7 +39,7 @@ export const RecentSearchesContainer = styled.div`
       }
       #pokemonName {
         font-size: 12px;
-        margin: 0px 5px 0px 5px;
+        margin: 5px 5px 0px 5px;
         cursor: pointer;
         color: #aaaaaa;
       }
@@ -68,6 +73,12 @@ export const RecentSearchesContainer = styled.div`
       height: 100%;
       flex-direction: column;
       justify-content: center;
+
+      #recentlySearchedHeader {
+        font-style: italic;
+        display: inline;
+      }
+
       .searchItem {
         padding: 10px;
         .pokemonSprite {

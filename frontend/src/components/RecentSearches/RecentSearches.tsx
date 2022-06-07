@@ -1,8 +1,8 @@
-import { FC,useState,useEffect} from "react";
-import { Pokemon, SearchItem } from "../../AppInterfaces";
+import { FC, useState, useEffect } from "react";
+import { SearchItem } from "../../AppInterfaces";
 import { RecentSearchesProps } from "./RecentSearchesInterfaces";
 import { RecentSearchesContainer } from "./RecentSearchesStyled";
-import PokeBall from "../../assets/poke_ball.png"
+import PokeBall from "../../assets/poke_ball.png";
 
 const RecentSearches: FC<RecentSearchesProps> = ({
   searchHistory,
@@ -10,24 +10,29 @@ const RecentSearches: FC<RecentSearchesProps> = ({
   setPokemon,
   setFetchError,
 }) => {
+  const [clickedSearchItem, setClickedSearchItem] = useState<
+    SearchItem | undefined
+  >();
 
-  const [clickedSearchItem,setClickedSearchItem] = useState<SearchItem | undefined>();
+  useEffect(() => {
+    return () => {
+      setClickedSearchItem(undefined);
+    };
+  }, [searchHistory]);
 
-  useEffect(() => {  
-    
-    return () => {        
-        setClickedSearchItem(undefined);
-    }
-  }, [searchHistory])
-  
-  const checkEqualitySearchItem = (searchItem1:SearchItem,searchItem2:SearchItem)=>{
-    return (searchItem1.pokemon.name === searchItem2.pokemon.name && 
-        searchItem1.timeOfSearch === searchItem2.timeOfSearch)
-  }
+  const checkEqualitySearchItem = (
+    searchItem1: SearchItem,
+    searchItem2: SearchItem
+  ) => {
+    return (
+      searchItem1.pokemon.name === searchItem2.pokemon.name &&
+      searchItem1.timeOfSearch === searchItem2.timeOfSearch
+    );
+  };
 
   const recentSearchClickHandler = (
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
-    searchItem: SearchItem,
+    searchItem: SearchItem
   ) => {
     setFetchError(undefined);
     setPokemon(searchItem.pokemon);
@@ -38,13 +43,19 @@ const RecentSearches: FC<RecentSearchesProps> = ({
   return (
     <RecentSearchesContainer>
       <div id="mainRecentSearches">
+        <h4 id="recentlySearchedHeader">Recent searches</h4>
         {searchHistory.history
           .sort((a, b) => b.timeOfSearch - a.timeOfSearch)
-          .map((searchItem) => {              
+          .map((searchItem) => {
             return (
               <div
-                className={"searchItem"}     
-                id={clickedSearchItem && checkEqualitySearchItem(searchItem,clickedSearchItem)?"searchItemClicked":""}         
+                className={"searchItem"}
+                id={
+                  clickedSearchItem &&
+                  checkEqualitySearchItem(searchItem, clickedSearchItem)
+                    ? "searchItemClicked"
+                    : ""
+                }
                 key={searchItem.timeOfSearch}
                 onClick={(e) => {
                   recentSearchClickHandler(e, searchItem);
@@ -52,8 +63,12 @@ const RecentSearches: FC<RecentSearchesProps> = ({
               >
                 <img
                   className="pokemonSprite"
-                  id={searchItem.pokemon.spriteUrl===""?"pokeBall":""}
-                  src={searchItem.pokemon.spriteUrl!== "" ? searchItem.pokemon.spriteUrl : PokeBall}         
+                  id={searchItem.pokemon.spriteUrl === "" ? "pokeBall" : ""}
+                  src={
+                    searchItem.pokemon.spriteUrl !== ""
+                      ? searchItem.pokemon.spriteUrl
+                      : PokeBall
+                  }
                 ></img>
                 <p id="pokemonName">{searchItem.pokemon.name}</p>
               </div>

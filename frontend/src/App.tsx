@@ -29,9 +29,9 @@ const App = () => {
     retrieveSearchHistory(setSearchHistory);
   }, []);
 
-  const updateSearchHistory = (searchedPokemon:Pokemon) => {    
+  const updateSearchHistory = (searchedPokemon: Pokemon) => {
     updateSearchHistoryHelper(searchedPokemon, searchHistory, setSearchHistory);
-  }
+  };
 
   const searchPokemon = async () => {
     const formattedInput = inputFormatter(userInput);
@@ -45,14 +45,13 @@ const App = () => {
       setLoading,
       setPokemon,
       setFetchError,
-      updateSearchHistory,      
-    );   
+      updateSearchHistory
+    );
   };
 
   const onSubmitSearchPokemon = () => {
     searchPokemon();
-  }
-
+  };
 
   return (
     <AppContainer>

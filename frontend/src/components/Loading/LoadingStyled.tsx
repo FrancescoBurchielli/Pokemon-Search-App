@@ -15,6 +15,7 @@ export const LoadingContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5%;
 
   #spinnerContainer {
     width: 90%;
@@ -29,7 +30,6 @@ export const LoadingContainer = styled.div`
       border-top: 16px solid rgba(238, 21, 21, 0.7);
       width: 120px;
       height: 120px;
-      -webkit-animation: spin 2s linear infinite; /* Safari */
       animation: spin 2s linear infinite;
     }
     @media only screen and (min-width: 667px) {
