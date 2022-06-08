@@ -13,6 +13,39 @@ interface FetchPokemonAndSetStateFunction {
   ): void;
 }
 
+export const fetchPokemonAndSetState: FetchPokemonAndSetStateFunction = (
+  name,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setPokemon,
+  setError,
+  updateSearchHistory
+) => {
+  setLoading(true);
+  fetchPokemon(name)
+    .then((response) => {
+      updateSearchHistory(response.data);
+      setPokemon(response.data);
+    })
+    .catch((error) => {
+      let errorObject: FetchErrorInterface;
+      if (error.response && error.response.status === 404) {
+        errorObject = {
+          status: error.response.status,
+          message: "we couldn't find your pokemon, sorry...",
+        };
+      } else {
+        errorObject = {
+          status: 500,
+          message: "something went wrong, please try again later...",
+        };
+      }
+      setError(errorObject);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};
+
 export const retrieveSearchHistory = (
   setSearchHistory: React.Dispatch<
     React.SetStateAction<SearchHistory | undefined>
@@ -54,37 +87,4 @@ export const updateSearchHistoryHelper = (
 export const inputFormatter = (name: string) => {
   const formattedInput = name.trim().toLowerCase().replace(" ", "-");
   return formattedInput;
-};
-
-export const fetchPokemonAndSetState: FetchPokemonAndSetStateFunction = (
-  name,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  setPokemon,
-  setError,
-  updateSearchHistory
-) => {
-  setLoading(true);
-  fetchPokemon(name)
-    .then((response) => {
-      updateSearchHistory(response.data);
-      setPokemon(response.data);
-    })
-    .catch((error) => {
-      let errorObject: FetchErrorInterface;
-      if (error.response && error.response.status === 404) {
-        errorObject = {
-          status: error.response.status,
-          message: "we couldn't find your pokemon, sorry...",
-        };
-      } else {
-        errorObject = {
-          status: 500,
-          message: "something went wrong, please try again later...",
-        };
-      }
-      setError(errorObject);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
 };

@@ -28,7 +28,7 @@ def get_pokemon_sprite_dict(pokemon_info_response_raw):
 
 def get_pokemon_species_info_dict(pokemon_species_response_raw):
     pokemon_species_response_json = pokemon_species_response_raw.json()
-    name = pokemon_species_response_json.get("name", "not provided")
+    name = pokemon_species_response_json.get("name", "no name provided")
     is_legendary = pokemon_species_response_json.get("is_legendary", False)
     flavor_text_entries = pokemon_species_response_json.get("flavor_text_entries",
                                                             None)  # [{"flavor_text": "not provided"}]
