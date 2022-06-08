@@ -39,6 +39,6 @@ Most challenging and time-consuming was the interaction between the components r
 I found the test meaningful and fun to work with. The following are the areas where I could have performed better 
 and where I wish to improve going forward: 
 
-- Testing: I plan to invest time and effort in practicing with libraries such as Jest and Cypress and to add relevant tests to my code
-- Clean code: I want my code to become more modular, readable and efficient. 
-- Interaction with APIs: I am eager to learn and apply best practices when it comes to error handling and default/custom error objects
+- *Testing*: I plan to invest time and effort in practicing with libraries such as Jest and Cypress and to add relevant tests to my code
+- *Clean code*: I want my code to become more modular, readable and efficient
+- *Interaction with APIs*: I am eager to learn and apply best practices when it comes to error handling and default/custom error objects
