@@ -1,7 +1,7 @@
 # Pokemon Search App
 
 A simple web app that allows you to search for a pokemon by name and returns the pokemon's sprite, description and legendary status. Your most recent 5 searches are saved and shown.
-The web app has been developed with React, Typescript, Styled-Components and Docker.
+The web app has been developed with React, Typescript, Styled-Components, Django and Docker.
 
 
 ## Prerequisites
