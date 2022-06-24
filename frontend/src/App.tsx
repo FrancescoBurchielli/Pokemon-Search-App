@@ -29,6 +29,9 @@ const App = () => {
   const [fetchError, setFetchError] = useState<
     FetchErrorInterface | undefined
   >();
+  const [clickedSearchItem, setClickedSearchItem] = useState<
+    SearchItem | undefined
+  >();
 
   useEffect(() => {
     retrieveSearchHistory(setSearchHistory);
@@ -38,25 +41,24 @@ const App = () => {
     updateSearchHistoryHelper(searchedPokemon, searchHistory, setSearchHistory);
   };
 
-  const searchPokemon = async () => {
+  const searchPokemon = () => {
     const formattedInput = inputFormatter(userInput);
     if (!formattedInput) {
       return;
     }
-
+    setClickedSearchItem(undefined);
     setPokemon(undefined);
     setFetchError(undefined);
-
     if (searchHistory) {
       const searchedPokemon = searchHistory.history.filter(
         (searchItem) => searchItem.pokemon.name === formattedInput
       )[0];
       if (searchedPokemon) {
         setPokemon(searchedPokemon.pokemon);
+        setClickedSearchItem(searchedPokemon);
         return;
       }
     }
-
     fetchPokemonAndSetState(
       formattedInput,
       setLoading,
@@ -72,6 +74,7 @@ const App = () => {
 
   const onSearchItemClickHandler = (searchItem: SearchItem): void => {
     setFetchError(undefined);
+    setClickedSearchItem(searchItem);
     setPokemon(searchItem.pokemon);
     setUserInput(searchItem.pokemon.name);
   };
@@ -82,6 +85,8 @@ const App = () => {
         <RecentSearches
           searchHistory={searchHistory}
           onSearchItemClickHandler={onSearchItemClickHandler}
+          clickedSearchItem={clickedSearchItem}
+          setClickedSearchItem={setClickedSearchItem}
         />
       )}
       <div id="mainApp">

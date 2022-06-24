@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { SearchItem } from "../../AppInterfaces";
 import { RecentSearchesProps } from "./RecentSearchesInterfaces";
 import { RecentSearchesContainer } from "./RecentSearchesStyled";
@@ -7,17 +7,8 @@ import PokeBall from "../../assets/poke_ball.png";
 const RecentSearches: FC<RecentSearchesProps> = ({
   searchHistory,
   onSearchItemClickHandler,
+  clickedSearchItem,
 }) => {
-  const [clickedSearchItem, setClickedSearchItem] = useState<
-    SearchItem | undefined
-  >();
-
-  useEffect(() => {
-    return () => {
-      setClickedSearchItem(undefined);
-    };
-  }, [searchHistory]);
-
   const checkEqualitySearchItem = (
     searchItem1: SearchItem,
     searchItem2: SearchItem
@@ -26,14 +17,6 @@ const RecentSearches: FC<RecentSearchesProps> = ({
       searchItem1.pokemon.name === searchItem2.pokemon.name &&
       searchItem1.timeOfSearch === searchItem2.timeOfSearch
     );
-  };
-
-  const recentSearchClickHandler = (
-    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
-    searchItem: SearchItem
-  ) => {
-    onSearchItemClickHandler(searchItem);
-    setClickedSearchItem(searchItem);
   };
 
   return (
@@ -53,9 +36,7 @@ const RecentSearches: FC<RecentSearchesProps> = ({
                     : ""
                 }
                 key={searchItem.timeOfSearch}
-                onClick={(e) => {
-                  recentSearchClickHandler(e, searchItem);
-                }}
+                onClick={() => onSearchItemClickHandler(searchItem)}
               >
                 <img
                   className="pokemonSprite"
